@@ -64,7 +64,7 @@ class LogoPainter extends CustomPainter {
 
     final textPainter = TextPainter(
       text: TextSpan(
-        text: 'RE',
+        text: 'R.E',
         style: TextStyle(
           color: const Color(0xFF2E2E2E),
           fontSize: size.width * 0.4,

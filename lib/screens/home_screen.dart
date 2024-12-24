@@ -46,6 +46,15 @@ class HomeScreen extends StatelessWidget {
                 InkWell(
                   onTap: () {
 
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  BlocProvider(
+  create: (context) => BookCubit()..getBooks(),
+  child: BestSellerAll(),
+),
+                      ),
+                    );
                   },
                   child: CustomText(
                       text: "View All",
@@ -73,7 +82,10 @@ class HomeScreen extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => BlocProvider(
+  create: (context) => BookCubit()..getBooks(),
+  child: UpComingAll(),
+)));
                   },
                   child: CustomText(
                       text: "View All",
