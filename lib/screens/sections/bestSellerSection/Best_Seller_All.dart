@@ -34,7 +34,7 @@ class BestSellerAll extends StatelessWidget {
                     return BookWidget(
                       book: state.books[index],
                       bookHeight: constraints.maxWidth /
-                          (crossAxisCount * 0.8), // Adjust height dynamically
+                          (crossAxisCount * 0.8),
                     );
                   } else {
                     return const Center(

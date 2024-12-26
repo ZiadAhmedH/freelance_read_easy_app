@@ -20,10 +20,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BlocProvider(
-        create: (context) => ReaderCubit()..updateFontSizeRange(context),
-        child: const SplashScreen(),
-      ),
+      home: const SplashScreen(),
     );
   }
 }

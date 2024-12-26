@@ -36,8 +36,7 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         fontSize: 22),
                     CustomText(
-                        text:
-                        "Handpicked based on your reading preferences.",
+                        text: "Handpicked based on your reading preferences.",
                         fontWeight: FontWeight.w400,
                         fontSize: 16),
                   ],
@@ -45,14 +44,13 @@ class HomeScreen extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  BlocProvider(
-  create: (context) => BookCubit()..getBooks(),
-  child: BestSellerAll(),
-),
+                        builder: (context) => BlocProvider(
+                          create: (context) => BookCubit()..getBooks(),
+                          child: BestSellerAll(),
+                        ),
                       ),
                     );
                   },
@@ -66,10 +64,10 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
-            child:  BlocProvider(
-  create: (context) => BookCubit()..getBooks(),
-  child: BestSellerSection(),
-),
+            child: BlocProvider(
+              create: (context) => BookCubit()..getBooks(),
+              child: BestSellerSection(),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -82,10 +80,13 @@ class HomeScreen extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => BlocProvider(
-  create: (context) => BookCubit()..getBooks(),
-  child: UpComingAll(),
-)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                                  create: (context) => BookCubit()..getBooks(),
+                                  child: UpComingAll(),
+                                )));
                   },
                   child: CustomText(
                       text: "View All",
@@ -97,10 +98,10 @@ class HomeScreen extends StatelessWidget {
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.35,
-            child:  BlocProvider(
-  create: (context) =>  BookCubit()..getBooks(),
-  child: UpComingSection(),
-),
+            child: BlocProvider(
+              create: (context) => BookCubit()..getBooks(),
+              child: UpComingSection(),
+            ),
           ),
         ],
       ),

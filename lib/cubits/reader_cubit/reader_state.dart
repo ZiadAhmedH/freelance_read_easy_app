@@ -1,33 +1,33 @@
-part of 'reader_cubit.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 class ReaderState extends Equatable {
-  final Color backgroundColor;
   final double fontSize;
-  final double minFontSize;
-  final double maxFontSize;
+  final Color backgroundColor;
+  final int currentPage;
+  final int totalPages;
 
   const ReaderState({
-    this.backgroundColor = const Color(0xFFFAF3E0),
-    this.fontSize = 18,
-    this.minFontSize = 14,
-    this.maxFontSize = 24,
+    this.fontSize = 16.0,
+    this.backgroundColor = Colors.white,
+    this.currentPage = 1,
+    this.totalPages = 71,
   });
 
+  @override
+  List<Object> get props => [fontSize, backgroundColor, currentPage, totalPages];
+
   ReaderState copyWith({
-    Color? backgroundColor,
     double? fontSize,
-    double? minFontSize,
-    double? maxFontSize,
+    Color? backgroundColor,
+    int? currentPage,
+    int? totalPages,
   }) {
     return ReaderState(
-      backgroundColor: backgroundColor ?? this.backgroundColor,
       fontSize: fontSize ?? this.fontSize,
-      minFontSize: minFontSize ?? this.minFontSize,
-      maxFontSize: maxFontSize ?? this.maxFontSize,
+      backgroundColor: backgroundColor ?? this.backgroundColor,
+      currentPage: currentPage ?? this.currentPage,
+      totalPages: totalPages ?? this.totalPages,
     );
   }
-
-  @override
-  List<Object> get props => [backgroundColor, fontSize, minFontSize, maxFontSize];
 }
-

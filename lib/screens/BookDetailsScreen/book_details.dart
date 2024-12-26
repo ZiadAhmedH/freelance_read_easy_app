@@ -73,7 +73,7 @@ class BookDetailScreen extends StatelessWidget {
                       Navigator.push(context, MaterialPageRoute(builder: (context) {
                          return BlocProvider(
   create: (context) => ReaderCubit(),
-  child: ReaderScreen(),
+  child: ReaderPage(),
 );
                       },));
                     },

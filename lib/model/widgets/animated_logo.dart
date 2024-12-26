@@ -49,18 +49,8 @@ class _AnimatedLogoState extends State<AnimatedLogo> with SingleTickerProviderSt
 class LogoPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = const Color(0xFF87CEEB)
-      ..style = PaintingStyle.fill;
 
-    final path = Path()
-      ..moveTo(size.width * 0.2, size.height * 0.2)
-      ..lineTo(size.width * 0.8, size.height * 0.2)
-      ..lineTo(size.width * 0.8, size.height * 0.8)
-      ..lineTo(size.width * 0.2, size.height * 0.8)
-      ..close();
 
-    canvas.drawPath(path, paint);
 
     final textPainter = TextPainter(
       text: TextSpan(

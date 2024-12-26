@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:freelance/screens/BookDetailsScreen/reader_settings.dart';
 
 import '../../cubits/reader_cubit/reader_cubit.dart';
-import '../../model/widgets/reader_app_bar.dart';
-import '../../model/widgets/reader_bottom_bar.dart';
+import '../../cubits/reader_cubit/reader_state.dart';
 
-class ReaderScreen extends StatelessWidget {
-
-  const ReaderScreen({Key? key}) : super(key: key);
+class ReaderPage extends StatelessWidget {
+  const ReaderPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,32 +14,118 @@ class ReaderScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: state.backgroundColor,
-          appBar: const ReaderAppBar(),
           body: SafeArea(
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                return SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: constraints.maxWidth * 0.05,
-                    vertical: constraints.maxHeight * 0.02,
+            child: Column(
+              children: [
+                // App Bar
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const BackButton(),
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.headphones_outlined),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.menu),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.settings),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) =>
+                                    BlocProvider(
+                                      create: (context) => ReaderCubit(),
+                                      child: ReaderSettings(),
+                                    ),
+                              );
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.bookmark_border),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  child: Text(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. sdvbsvsdsdvsdvdssdvsdvdbkvkbsdkvksdhvksdvjksdvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvSed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. sdvbsvsdsdvsdvdssdvsdvdbkvkbsdkvksdhvksdvjksd',
-                    style: GoogleFonts.geo(
-                      fontSize: state.fontSize * (constraints.maxWidth / 400),
-                      color: const Color(0xFF2E2E2E),
-                      height: 1.5,
+                ),
+
+                // Book Title
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Роберт Джордан',
+                        style: TextStyle(
+                          fontSize: state.fontSize + 4,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Колесо времени. Книга 1. Око мира',
+                        style: TextStyle(
+                          fontSize: state.fontSize + 2,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Content
+                Expanded(
+                  child: SingleChildScrollView(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      'Ранее\n\nВороны\n\nЗдесь, вдали от Эмондова Луга, на берегу Винной реки, тропы к Морскому лесу берега Винной...',
+                      style: TextStyle(
+                        fontSize: state.fontSize,
+                        height: 1.5,
+                      ),
                     ),
                   ),
-                );
-              },
+                ),
+
+                // Progress Bar
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      LinearProgressIndicator(
+                        value: state.currentPage / state.totalPages,
+                        backgroundColor: Colors.grey[200],
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Theme
+                              .of(context)
+                              .primaryColor,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        '${state.currentPage} стр из ${state.totalPages}',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-          bottomNavigationBar: const ReaderBottomBar(),
         );
       },
     );
   }
-}
 
+  void _showSettingsModal(BuildContext context) {
+
+  }
+}
