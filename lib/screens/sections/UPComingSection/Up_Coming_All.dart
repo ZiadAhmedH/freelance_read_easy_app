@@ -22,28 +22,28 @@ class UpComingAll extends StatelessWidget {
 
           return BlocBuilder<BookCubit, BookState>(
             builder: (context, state) {
-              return GridView.builder(
-                itemCount: 20,
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: crossAxisCount,
-                  childAspectRatio: childAspectRatio,
-                ),
-                itemBuilder: (context, index) {
-                   if(state is BookLoaded){
+              if (state is BookLoaded) {
+                return GridView.builder(
+                  itemCount:state.books.length,
+                  physics: const BouncingScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    childAspectRatio: childAspectRatio,
+                  ),
+                  itemBuilder: (context, index) {
                     return BookWidget(
                       book: state.books[index],
                       bookHeight: constraints.maxWidth /
                           (crossAxisCount * 0.8), // Adjust height dynamically
-                    );}
-                    else {
-                     return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                   }
-                },
-              );
-            },
+                    );
+                                    },
+                );
+              } else {
+                return const Center(
+                    child: CircularProgressIndicator()
+                );
+              }
+            }
           );
         },
       ),

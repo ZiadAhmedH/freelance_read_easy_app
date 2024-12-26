@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+
+import '../../utils/constant/Colors.dart';
 
 class ReaderState extends Equatable {
   final double fontSize;
@@ -9,13 +12,10 @@ class ReaderState extends Equatable {
 
   const ReaderState({
     this.fontSize = 16.0,
-    this.backgroundColor = Colors.white,
+    this.backgroundColor = AppColors.white,
     this.currentPage = 1,
     this.totalPages = 71,
   });
-
-  @override
-  List<Object> get props => [fontSize, backgroundColor, currentPage, totalPages];
 
   ReaderState copyWith({
     double? fontSize,
@@ -30,4 +30,7 @@ class ReaderState extends Equatable {
       totalPages: totalPages ?? this.totalPages,
     );
   }
+
+  @override
+  List<Object> get props => [fontSize, backgroundColor, currentPage, totalPages];
 }

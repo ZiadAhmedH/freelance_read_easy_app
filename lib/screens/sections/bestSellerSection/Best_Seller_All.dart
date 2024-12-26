@@ -23,7 +23,7 @@ class BestSellerAll extends StatelessWidget {
           return BlocBuilder<BookCubit, BookState>(
             builder: (context, state) {
               return GridView.builder(
-                itemCount: 20,
+                itemCount:  10,
                 physics: const BouncingScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: crossAxisCount,

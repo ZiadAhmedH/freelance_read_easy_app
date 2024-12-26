@@ -9,13 +9,20 @@ class ReaderCubit extends Cubit<ReaderState> {
   static const Color kCreamColor = Color(0xFFFAF3E0);
 
   void setFontSize(double size) {
+    if (size > 24) {
+      size = 24;
+    }
+    if (size < 12) {
+      size = 12;
+    }
     emit(state.copyWith(fontSize: size));
   }
 
-  void setBackgroundColor(Color color) {
-    if (color != state.backgroundColor) {
+  void setBackgroundColor() {
+    bool isWhite = state.backgroundColor == kWhiteColor;
+    Color color = isWhite ? kCreamColor : kWhiteColor;
       emit(state.copyWith(backgroundColor: color));
-    }
+
   }
 
   void updateProgress(int page) {

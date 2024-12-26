@@ -13,9 +13,9 @@ class BookLoading extends BookState {}
 
 
 class BookLoaded extends BookState {
-  final List<BookModel> books;
+  final List<Book> books;
 
-  BookLoaded(this.books);
+  const BookLoaded(this.books);
 
   @override
   List<Object> get props => [books];

@@ -11,7 +11,6 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Text(
       text,
-      // use google fonts
       overflow:TextOverflow.ellipsis ,
       style: GoogleFonts.notoSansGeorgian(
         fontWeight: fontWeight,

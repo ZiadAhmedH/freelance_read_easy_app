@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freelance/screens/BookDetailsScreen/reader_settings.dart';
 
 import '../../cubits/reader_cubit/reader_cubit.dart';
 import '../../cubits/reader_cubit/reader_state.dart';
@@ -17,7 +16,6 @@ class ReaderPage extends StatelessWidget {
           body: SafeArea(
             child: Column(
               children: [
-                // App Bar
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Row(
@@ -27,36 +25,16 @@ class ReaderPage extends StatelessWidget {
                       Row(
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.headphones_outlined),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.menu),
-                            onPressed: () {},
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.settings),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) =>
-                                    BlocProvider(
-                                      create: (context) => ReaderCubit(),
-                                      child: ReaderSettings(),
-                                    ),
-                              );
-                            },
-                          ),
-                          IconButton(
                             icon: const Icon(Icons.bookmark_border),
-                            onPressed: () {},
+                            onPressed: () {
+                              // Bookmark action code here
+                            },
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-
                 // Book Title
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -78,13 +56,13 @@ class ReaderPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 // Content
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Text(
-                      'Ранее\n\nВороны\n\nЗдесь, вдали от Эмондова Луга, на берегу Винной реки, тропы к Морскому лесу берега Винной...',
+                      // Your long text content here
+                      "",
                       style: TextStyle(
                         fontSize: state.fontSize,
                         height: 1.5,
@@ -92,40 +70,41 @@ class ReaderPage extends StatelessWidget {
                     ),
                   ),
                 ),
-
                 // Progress Bar
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      LinearProgressIndicator(
-                        value: state.currentPage / state.totalPages,
-                        backgroundColor: Colors.grey[200],
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme
-                              .of(context)
-                              .primaryColor,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        '${state.currentPage} стр из ${state.totalPages}',
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ],
+            ),
+          ),
+          bottomNavigationBar: BottomAppBar(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                   // add for incrementing the font size + chnage background color
+                  IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: () {
+                      context.read<ReaderCubit>().setFontSize(state.fontSize + 2);
+                    },),
+                  IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: () {
+                      context.read<ReaderCubit>().setFontSize(state.fontSize - 2);
+                    },
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    icon: const Icon(Icons.brightness_6),
+                    onPressed: () {
+                      context.read<ReaderCubit>().setBackgroundColor();
+                    },
+                  ),
+
+                ],
+              ),
             ),
           ),
         );
       },
     );
-  }
-
-  void _showSettingsModal(BuildContext context) {
-
   }
 }

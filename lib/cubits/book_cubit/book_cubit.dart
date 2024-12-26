@@ -15,13 +15,18 @@ class BookCubit extends Cubit<BookState> {
   Future<void> getBooks() async {
     emit(BookLoading());
     try {
-      List<dynamic> jsonList = json.decode(AppManger.jsonData);
-      List<BookModel> books = jsonList.map((json) => BookModel.fromJson(json)).toList();
+      // Create BookList object from JSON data
+      final bookList = BookList.fromJson(BookData.jsonData);
+
+      // Access the books list from BookList object
+      final books = bookList.books;
 
       emit(BookLoaded(books));
     } catch (e) {
+      print('Error loading books: $e');  // Debug print
       emit(BookError(e.toString()));
     }
   }
+  }
 
-}
+

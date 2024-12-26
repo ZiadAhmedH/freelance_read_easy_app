@@ -36,9 +36,9 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                         fontSize: 22),
                     CustomText(
-                        text: "Handpicked based on your reading preferences.",
+                        text: "Handpicked based on yourb  reading preferences.",
                         fontWeight: FontWeight.w400,
-                        fontSize: 16),
+                        fontSize: 12),
                   ],
                 ),
                 const Spacer(),
